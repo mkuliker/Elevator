@@ -4,17 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b1d1c526-b0bc-458b-a8ed-9bdaf2773ec9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="b1d1c526-b0bc-458b-a8ed-9bdaf2773ec9" name="Changes" comment="init">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Commands/AddGroupToElevator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Commands/AddGroupToFloor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Commands/Command.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ControlSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Init.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/ClearCurrentScopeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/DependencyResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/InitCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/IoC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/RegisterIocDependencyCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/SetCurrentScopeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/UpdateIocResolveDependencyStrategyCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/CustomObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/Elevator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/ElevatorImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/ElevatorStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/Floor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/FloorButtonStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/FloorImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/Group.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/GroupImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/UObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/AddGroupTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/FloorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,9 +70,77 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "settings.editor.selected.configurable": "advanced.settings"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Objects" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="Objects" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Objects" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.FloorTest.buttonTest">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="App" />
+      <module name="Elevator" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AddGroupTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Elevator" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="AddGroupTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AddGroupTest.addGroupToFloorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Elevator" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="AddGroupTest" />
+      <option name="METHOD_NAME" value="addGroupToFloorTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FloorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Elevator" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FloorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FloorTest.buttonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Elevator" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FloorTest" />
+      <option name="METHOD_NAME" value="buttonTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.FloorTest.buttonTest" />
+        <item itemvalue="JUnit.FloorTest" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.AddGroupTest.addGroupToFloorTest" />
+        <item itemvalue="JUnit.AddGroupTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -51,6 +150,39 @@
       <option name="presentableId" value="Default" />
       <updated>1697713892342</updated>
     </task>
+    <task id="LOCAL-00001" summary="init">
+      <created>1697715358530</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1697715358530</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init" />
+    <option name="LAST_COMMIT_MESSAGE" value="init" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/App.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/AddGroupTest.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Objects.FloorImpl" memberName="object" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
