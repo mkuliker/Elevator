@@ -1,7 +1,8 @@
 package Objects;
 
 public enum FloorButtonStatus {
-    ON("I"),
+    UP("^"),
+    DOWN("v"),
     OFF("O");
 
     private final String title;

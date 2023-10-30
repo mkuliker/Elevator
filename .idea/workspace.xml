@@ -5,35 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1d1c526-b0bc-458b-a8ed-9bdaf2773ec9" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Commands/AddGroupToElevator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Commands/AddGroupToFloor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Commands/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ControlSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Init.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/ClearCurrentScopeCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/DependencyResolver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/InitCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/IoC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/RegisterIocDependencyCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/SetCurrentScopeCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/IoC/UpdateIocResolveDependencyStrategyCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/CustomObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/Elevator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/ElevatorImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/ElevatorStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/Floor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/FloorButtonStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/FloorImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/Group.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/GroupImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Objects/UObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/AddGroupTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ControlSystemTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ElevatorTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/FloorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/AddGroupToElevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/AddGroupToElevator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/AddGroupToFloor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/AddGroupToFloor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ControlSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ControlSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Objects/Elevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Objects/Elevator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Objects/ElevatorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Objects/ElevatorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Objects/FloorButtonStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Objects/FloorButtonStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Objects/FloorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Objects/FloorImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +27,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -71,6 +55,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "settings.editor.selected.configurable": "advanced.settings"
   }
 }]]></component>
@@ -78,14 +64,22 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="Objects" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+      <recent name="Objects" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
       <recent name="Objects" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Objects" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.FloorTest.buttonTest">
+  <component name="RunManager" selected="JUnit.ElevatorTest.addingTooBigGroupCausesError">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="App" />
       <module name="Elevator" />
@@ -93,20 +87,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AddGroupTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ElevatorTest.addGroupTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Elevator" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="AddGroupTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="ElevatorTest" />
+      <option name="METHOD_NAME" value="addGroupTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AddGroupTest.addGroupToFloorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ElevatorTest.addingTooBigGroupCausesError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Elevator" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="AddGroupTest" />
-      <option name="METHOD_NAME" value="addGroupToFloorTest" />
+      <option name="MAIN_CLASS_NAME" value="ElevatorTest" />
+      <option name="METHOD_NAME" value="addingTooBigGroupCausesError" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -133,11 +128,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ElevatorTest.addingTooBigGroupCausesError" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.ElevatorTest.addGroupTest" />
         <item itemvalue="JUnit.FloorTest.buttonTest" />
         <item itemvalue="JUnit.FloorTest" />
-        <item itemvalue="Application.App" />
-        <item itemvalue="JUnit.AddGroupTest.addGroupToFloorTest" />
-        <item itemvalue="JUnit.AddGroupTest" />
       </list>
     </recent_temporary>
   </component>
@@ -157,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697715358530</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="init">
+      <created>1698593337809</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698593337809</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -169,7 +171,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/App.java</url>
-          <line>25</line>
+          <line>26</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

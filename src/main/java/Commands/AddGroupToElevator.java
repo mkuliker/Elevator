@@ -5,19 +5,19 @@ import Objects.Group;
 
 public class AddGroupToElevator implements Command{
 
-    private final int elevator;
+    private final int elevatorNumber;
     private final Group group;
 
-    public AddGroupToElevator(int elevator, Group group) {
+    public AddGroupToElevator(int elevatorNumber, Group group) {
 
-        this.elevator = elevator;
+        this.elevatorNumber = elevatorNumber;
         this.group = group;
     }
 
     @Override
     public void execute() {
-        Elevator elevator = IoC.IoC.resolve("getElevator", this.elevator);
-        elevator.changeOccupancy(this.group.getCount());
+        Elevator elevator = IoC.IoC.resolve("getElevator", elevatorNumber);
+        elevator.addPeopleGroup(group);
 
     }
 }

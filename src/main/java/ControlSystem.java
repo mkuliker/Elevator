@@ -38,7 +38,7 @@ public class ControlSystem {
         printFloors();
         //для каждого этажа с нажатой кнопкой - найти лифт и добавить этаж в список
         for (int i = 0; i < this.floorsCount; i++) {
-            if (floors[i].getButtonStatus() == FloorButtonStatus.ON) {
+            if (floors[i].getButtonStatus() == FloorButtonStatus.UP || floors[i].getButtonStatus() == FloorButtonStatus.DOWN) {
                 elevators[0].setTargetFloor(i, 1);
                 floors[i].setButtonStatus(FloorButtonStatus.OFF);
             }
@@ -53,7 +53,6 @@ public class ControlSystem {
                 for (var g : elevator.getPeopleGroups()) {
                     if (currentFloor == g.getTargetFloor()) {
 
-                        elevator.changeOccupancy(-1 * g.getCount());
                         forDel.add(g);
                         // обновить состояние, если лифт приехал
                         if (elevator.getCurrentOccupancy() == 0) {
@@ -66,7 +65,6 @@ public class ControlSystem {
                 if (floors[currentFloor].getPeopleGroups().size() != 0) {
                     forDel = new ArrayList<>();
                     for (var g : floors[currentFloor].getPeopleGroups()) {
-                        elevator.changeOccupancy(g.getCount());
                         elevator.setTargetFloor(g.getTargetFloor(), 1);
                         elevator.setTargetFloor(currentFloor, 0);
                         elevator.setStatus(calcNewStatus(elevator));

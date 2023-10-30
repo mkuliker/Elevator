@@ -21,12 +21,14 @@ public class FloorImpl implements Floor{
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void addPeopleGroup(Group group) {
         List<Group> groups = (List<Group>) object.getProperty("peopleGroups");
         groups.add(group);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Group> getPeopleGroups() {
         return (List<Group>) object.getProperty("peopleGroups");
     }

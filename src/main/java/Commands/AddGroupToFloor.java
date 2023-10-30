@@ -20,7 +20,8 @@ public class AddGroupToFloor implements Command{
     @Override
     public void execute() {
         Floor floor = IoC.resolve("getFloor", currentFloor);
-        floor.addPeopleGroup(new GroupImpl(this.count,this.targetFloor));
-        floor.setButtonStatus(FloorButtonStatus.ON);
+        floor.addPeopleGroup(new GroupImpl(count,targetFloor));
+        FloorButtonStatus status = currentFloor > targetFloor ? FloorButtonStatus.DOWN : FloorButtonStatus.UP;
+        floor.setButtonStatus(status);
     }
 }

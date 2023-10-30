@@ -34,20 +34,11 @@ public class ElevatorImpl implements Elevator{
         return (int) object.getProperty("capacity");
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public int getCurrentOccupancy() {
-        return (int) object.getProperty("currentOccupancy");
-    }
-
-    @Override
-    public void changeOccupancy(int count) {
-        int currentOccupancy = getCurrentOccupancy();
-        int newOccupancy = currentOccupancy + count;
-        if (newOccupancy >= 0 && newOccupancy <= getCapacity()){
-            object.setProperty("currentOccupancy", newOccupancy);
-        } else{
-            throw new RuntimeException("no space");
-        }
+        List<Group> groups = (List<Group>) object.getProperty("peopleGroups");
+        return groups.stream().map(Group::getCount).reduce(Integer::sum).orElse(0);
     }
 
     @Override
@@ -69,14 +60,23 @@ public class ElevatorImpl implements Elevator{
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Group> getPeopleGroups(){
         return (List<Group>) object.getProperty("peopleGroups");
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void addPeopleGroup(Group g) {
-        List<Group> groups = (List<Group>) object.getProperty("peopleGroups");
-        groups.add(g);
+        int currentOccupancy = getCurrentOccupancy();
+        int newOccupancy = currentOccupancy + g.getCount();
+        if (newOccupancy >= 0 && newOccupancy <= getCapacity()){
+            List<Group> groups = (List<Group>) object.getProperty("peopleGroups");
+            groups.add(g);
+        } else{
+            throw new RuntimeException("no space");
+        }
+
 
     }
 }
