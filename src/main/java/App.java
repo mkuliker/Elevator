@@ -1,11 +1,6 @@
 import Commands.AddGroupToFloor;
 import Commands.Command;
-import IoC.InitCommand;
 import IoC.IoC;
-import Objects.*;
-
-import java.util.*;
-import java.util.function.Function;
 
 public class App {
     static ControlSystem cs;

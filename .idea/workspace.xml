@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b1d1c526-b0bc-458b-a8ed-9bdaf2773ec9" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ControlSystemTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ElevatorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/FloorTest.java" afterDir="false" />
+    <list default="true" id="b1d1c526-b0bc-458b-a8ed-9bdaf2773ec9" name="Changes" comment="debug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/AddGroupToElevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/AddGroupToElevator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/AddGroupToFloor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/AddGroupToFloor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ControlSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ControlSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Objects/Elevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Objects/Elevator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Objects/ElevatorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Objects/ElevatorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Objects/FloorButtonStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Objects/FloorButtonStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Objects/FloorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Objects/FloorImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +70,7 @@
       <recent name="Objects" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ElevatorTest.addingTooBigGroupCausesError">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="App" />
       <module name="Elevator" />
@@ -128,8 +119,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ElevatorTest.addingTooBigGroupCausesError" />
         <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.ElevatorTest.addingTooBigGroupCausesError" />
         <item itemvalue="JUnit.ElevatorTest.addGroupTest" />
         <item itemvalue="JUnit.FloorTest.buttonTest" />
         <item itemvalue="JUnit.FloorTest" />
@@ -159,19 +150,36 @@
       <option name="project" value="LOCAL" />
       <updated>1698593337809</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="changeOccupancy removed&#10;FloorButtonStatus changed&#10;debug">
+      <created>1698668020317</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1698668020317</updated>
+    </task>
+    <task id="LOCAL-00004" summary="debug">
+      <created>1698668204568</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698668204568</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="changeOccupancy removed&#10;FloorButtonStatus changed" />
+    <MESSAGE value="changeOccupancy removed&#10;FloorButtonStatus changed&#10;debug" />
+    <MESSAGE value="debug" />
+    <option name="LAST_COMMIT_MESSAGE" value="debug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/App.java</url>
-          <line>26</line>
+          <line>21</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

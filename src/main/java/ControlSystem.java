@@ -37,51 +37,64 @@ public class ControlSystem {
     void process() {
         printFloors();
         //для каждого этажа с нажатой кнопкой - найти лифт и добавить этаж в список
-        for (int i = 0; i < this.floorsCount; i++) {
-            if (floors[i].getButtonStatus() == FloorButtonStatus.UP || floors[i].getButtonStatus() == FloorButtonStatus.DOWN) {
-                elevators[0].setTargetFloor(i, 1);
-                floors[i].setButtonStatus(FloorButtonStatus.OFF);
-            }
-        }
+        processFloors();
         //для каждого приехавшего лифта - обновить состояние
         for (int i = 0; i < this.elevatorsCount; i++) {
             Elevator elevator = elevators[i];
             int currentFloor = elevator.getCurrentFloor();
             if (elevator.getFloors()[currentFloor] == 1) {
-                //группа из лифта
-                List<Group> forDel = new ArrayList<>();
-                for (var g : elevator.getPeopleGroups()) {
-                    if (currentFloor == g.getTargetFloor()) {
-
-                        forDel.add(g);
-                        // обновить состояние, если лифт приехал
-                        if (elevator.getCurrentOccupancy() == 0) {
-                            elevator.setStatus(ElevatorStatus.OFF);
-                        }
-                    }
-                }
-                forDel.forEach(group -> elevator.getPeopleGroups().remove(group));
-                //группа в лифт
-                if (floors[currentFloor].getPeopleGroups().size() != 0) {
-                    forDel = new ArrayList<>();
-                    for (var g : floors[currentFloor].getPeopleGroups()) {
-                        elevator.setTargetFloor(g.getTargetFloor(), 1);
-                        elevator.setTargetFloor(currentFloor, 0);
-                        elevator.setStatus(calcNewStatus(elevator));
-                        elevator.addPeopleGroup(g);
-                        forDel.add(g);
-                    }
-                    forDel.forEach(group -> floors[currentFloor].getPeopleGroups().remove(group));
-                }
-
+                releaseGroupsFromElevator(elevator);
+                addGroupsFromFloorToElevator(elevator);
+                elevator.setStatus(calcNewStatus(elevator));
             }
         }
         //для каждого лифта в движении - сделать один мув
         for (int i = 0; i < this.elevatorsCount; i++) {
-                elevators[i].move();
+            elevators[i].move();
         }
         tick++;
+    }
 
+    private int findElevatorForFloor(int f) {
+        return 0;
+    }
+
+    private void processFloors() {
+        for (int i = 0; i < this.floorsCount; i++) {
+            if (floors[i].getButtonStatus() != FloorButtonStatus.OFF) {
+                int elevatorNum = findElevatorForFloor(i);
+                elevators[elevatorNum].setTargetFloor(i, 1);
+                floors[i].setButtonStatus(FloorButtonStatus.OFF);
+            }
+        }
+    }
+
+    private void processAddingGroupToElevator(Elevator elevator, Group group) {
+        elevator.setTargetFloor(group.getTargetFloor(), 1);
+        elevator.setTargetFloor(elevator.getCurrentFloor(), 0);
+        elevator.addPeopleGroup(group);
+    }
+
+    private void addGroupsFromFloorToElevator(Elevator elevator) {
+        int currentFloor = elevator.getCurrentFloor();
+        List<Group> forDel = new ArrayList<>();
+        if (floors[currentFloor].getPeopleGroups().size() != 0) {
+            for (var g : floors[currentFloor].getPeopleGroups()) {
+                processAddingGroupToElevator(elevator, g);
+                forDel.add(g);
+            }
+            forDel.forEach(group -> floors[currentFloor].getPeopleGroups().remove(group));
+        }
+    }
+
+    private void releaseGroupsFromElevator(Elevator elevator) {
+        List<Group> forDel = new ArrayList<>();
+        for (var g : elevator.getPeopleGroups()) {
+            if (elevator.getCurrentFloor() == g.getTargetFloor()) {
+                forDel.add(g);
+            }
+        }
+        forDel.forEach(group -> elevator.getPeopleGroups().remove(group));
     }
 
     private ElevatorStatus calcNewStatus(Elevator elevator) {
@@ -95,11 +108,9 @@ public class ControlSystem {
                     newStatus = ElevatorStatus.UP;
                 }
             }
-        }
-        else if (newStatus == ElevatorStatus.DOWN && elevator.getCurrentFloor() == 0) {
+        } else if (newStatus == ElevatorStatus.DOWN && elevator.getCurrentFloor() == 0) {
             newStatus = ElevatorStatus.OFF;
-        }
-        else if (newStatus == ElevatorStatus.UP && elevator.getCurrentFloor() == floorsCount - 1) {
+        } else if (newStatus == ElevatorStatus.UP && elevator.getCurrentFloor() == floorsCount - 1) {
             newStatus = ElevatorStatus.OFF;
         }
         return newStatus;
@@ -120,10 +131,11 @@ public class ControlSystem {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < elevatorsCount; i++) {
             if (currentFloor == elevators[i].getCurrentFloor()) {
-                result.append("  " + elevators[i].getStatus());
-                result.append("|");
-                result.append(elevators[i].getCurrentOccupancy());
-            } else{
+                result.append("  ")
+                        .append(elevators[i].getStatus())
+                        .append("|")
+                        .append(elevators[i].getCurrentOccupancy());
+            } else {
                 result.append("    ");
             }
         }
