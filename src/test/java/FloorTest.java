@@ -13,8 +13,7 @@ public class FloorTest {
     }
 
     @Test
-    void groupTest(){
-
+    void addGroupsTest(){
         UObject object = new CustomObject();
         object.setProperty("buttonStatus", FloorButtonStatus.OFF);
         object.setProperty("peopleGroups", new ArrayList<Group>());
@@ -24,7 +23,7 @@ public class FloorTest {
         assertEquals(2,floor.getPeopleGroups().size());
     }
     @Test
-    void buttonTest(){
+    void changeButtonStatusTest(){
         UObject object = new CustomObject();
         object.setProperty("buttonStatus", FloorButtonStatus.OFF);
         object.setProperty("peopleGroups", new ArrayList<Group>());
