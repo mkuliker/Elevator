@@ -10,7 +10,7 @@ public class Init {
     public static void initialLoad() {
         new InitCommand().execute();
         int floorsCount = 5;
-        int elevatorsCount = 2;
+        int elevatorsCount = 1;
         IoC.<Command>resolve("IoC.Register","floorsCount",(Function<Object[], Object>) ((args) -> floorsCount)).execute();
         IoC.<Command>resolve("IoC.Register","elevatorsCount",(Function<Object[], Object>) ((args) -> elevatorsCount)).execute();
         IoC.<Command>resolve("IoC.Register","elevator",(Function<Object[], Object>) ((args) -> {

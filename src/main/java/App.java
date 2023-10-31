@@ -8,7 +8,7 @@ public class App {
         Init.initialLoad();
         cs = IoC.resolve("getCS");
 
-        Command cmd = new AddGroupToFloor(1,0,4);
+        Command cmd = new AddGroupToFloor(1,3,4);
         cmd.execute();
 
         while (cs.tick < 17){
