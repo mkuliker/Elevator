@@ -3,7 +3,6 @@ package Commands;
 import Objects.Floor;
 import IoC.IoC;
 import Objects.FloorButtonStatus;
-import Objects.Group;
 import Objects.GroupImpl;
 
 public class AddGroupToFloor implements Command{

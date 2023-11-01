@@ -1,3 +1,5 @@
+package Core;
+
 import Commands.AddGroupToFloor;
 import Commands.Command;
 import IoC.IoC;

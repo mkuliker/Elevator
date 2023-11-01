@@ -1,25 +1,27 @@
-import Commands.Command;
+package Core;
+
+import Commands.*;
 import IoC.IoC;
 import Objects.*;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 public class ControlSystem {
-    int tick;
-    Elevator[] elevators;
-    Floor[] floors;
-    List<List<Command>> queue;
+    public int tick;
+    public Elevator[] elevators;
+    public Floor[] floors;
+    Deque<Command> queue;
     int floorsCount;
     int elevatorsCount;
-
-    Map<Group, Integer> groupToElevator;
+    Supplier<Boolean> debugMode;
 
     public ControlSystem() {
         this.floorsCount = IoC.resolve("floorsCount");
         this.elevatorsCount = IoC.resolve("elevatorsCount");
         this.floors = new Floor[this.floorsCount];
         this.elevators = new Elevator[this.elevatorsCount];
-        this.queue = new LinkedList<>();
+        this.queue = new ArrayDeque<Command>();
         for (int i = 0; i < this.floorsCount; i++) {
             this.floors[i] = IoC.resolve("floor");
         }
@@ -27,7 +29,7 @@ public class ControlSystem {
             this.elevators[i] = IoC.resolve("elevator");
         }
         tick = 0;
-        groupToElevator = new HashMap<>();
+        debugMode = IoC.resolve("debugModeChecker");
     }
 
     /*
@@ -35,28 +37,37 @@ public class ControlSystem {
         //для каждого лифта в движении - сделать один мув
         //для каждого приехавшего лифта - обновить состояние
      */
-    void process() {
-        printFloors();
+    public void process() {
+        if (debugMode.get()) {
+            printFloors();
+        }
         processFloors();
         processElevators();
-        tick++;
 
+        while (!queue.isEmpty()) {
+            Command cmd = queue.remove();
+            cmd.execute();
+        }
+        tick++;
     }
 
     private void processElevators() {
+        Command cmd;
         //для каждого приехавшего лифта - обновить состояние
         for (int i = 0; i < this.elevatorsCount; i++) {
             Elevator elevator = elevators[i];
             int currentFloor = elevator.getCurrentFloor();
             if (elevator.getFloors()[currentFloor] == 1) {
-                releaseGroupsFromElevator(elevator);
-                addGroupsFromFloorToElevator(elevator);
+                queue.add(new ReleaseGroupsFromElevator(i));
+                queue.add(new AddGroupsFromFloorToElevator(i));
             }
-            elevator.setStatus(calcNewStatus(elevator));
+            queue.add(new CalculateAndSetElevatorStatus(i));
+
         }
         //для каждого лифта в движении - сделать один мув
         for (int i = 0; i < this.elevatorsCount; i++) {
-            elevators[i].move();
+            queue.add(new MoveElevator(i));
+
         }
     }
 
@@ -81,79 +92,11 @@ public class ControlSystem {
             if (floors[i].getButtonStatus() != FloorButtonStatus.OFF) {
                 int elevatorNum = findElevatorForFloor(i);
                 if (elevatorNum != -1) {
-                    elevators[elevatorNum].setTargetFloor(i, 1);
-                    floors[i].setButtonStatus(FloorButtonStatus.OFF);
+                    queue.add(new SetTargetFloorToElevator(elevatorNum, i));
+                    queue.add(new SetFloorButtonStatus(i, FloorButtonStatus.OFF));
                 }
             }
         }
-    }
-
-    /**
-     * Добавить группы с этажа в лифт: переместить группу, включить-выключить этажи в лифте
-     *
-     * @param elevator
-     * @param group
-     */
-    private void processAddingGroupToElevator(Elevator elevator, Group group) {
-        elevator.setTargetFloor(group.getTargetFloor(), 1);
-        elevator.setTargetFloor(elevator.getCurrentFloor(), 0);
-        elevator.addPeopleGroup(group);
-    }
-
-    /**
-     * Добавить группы с этажа в лифт, удалить группы с этажа
-     *
-     * @param elevator
-     */
-    private void addGroupsFromFloorToElevator(Elevator elevator) {
-        int currentFloor = elevator.getCurrentFloor();
-        List<Group> forDel = new ArrayList<>();
-        if (floors[currentFloor].getPeopleGroups().size() != 0) {
-            for (var g : floors[currentFloor].getPeopleGroups()) {
-                processAddingGroupToElevator(elevator, g);
-                forDel.add(g);
-            }
-            forDel.forEach(group -> floors[currentFloor].getPeopleGroups().remove(group));
-        }
-    }
-
-    /**
-     * Высвободить все группы с g.targerFloor = e.currentFloor, выключить этаж в лифте
-     *
-     * @param elevator
-     */
-    private void releaseGroupsFromElevator(Elevator elevator) {
-        List<Group> forDel = new ArrayList<>();
-        for (var g : elevator.getPeopleGroups()) {
-            if (elevator.getCurrentFloor() == g.getTargetFloor()) {
-                forDel.add(g);
-            }
-        }
-        elevator.setTargetFloor(elevator.getCurrentFloor(), 0);
-        forDel.forEach(group -> elevator.getPeopleGroups().remove(group));
-    }
-
-    private ElevatorStatus calcNewStatus(Elevator elevator) {
-        ElevatorStatus newStatus = elevator.getStatus();
-        //у лифта не заполнены этажи: останавливаемся.
-        if (Arrays.stream(elevator.getFloors()).sum() == 0) {
-            newStatus = ElevatorStatus.OFF;
-        } else {
-            //у лифта заполнены этажи: либо едем куда ехали, либо разворачиваемся
-            int min = getMinFloorForElevator(elevator);
-            int max = getMaxFloorForElevator(elevator);
-            int current = elevator.getCurrentFloor();
-            if (elevator.getStatus() == ElevatorStatus.DOWN && min != -1 && min < current) {//едем куда ехали
-                newStatus = elevator.getStatus();
-            } else if (elevator.getStatus() == ElevatorStatus.UP && max != -1 && max > current) {//едем куда ехали
-                newStatus = elevator.getStatus();
-            } else if (min != -1 && min < current) {
-                newStatus = ElevatorStatus.DOWN;
-            } else if (max != -1 && max > current) {
-                newStatus = ElevatorStatus.UP;
-            }
-        }
-        return newStatus;
     }
 
     private void printFloors() {
@@ -198,7 +141,7 @@ public class ControlSystem {
         return destination == -1 ? "-" : destination.toString();
     }
 
-    int getMinFloorForElevator(Elevator elevator) {
+    public int getMinFloorForElevator(Elevator elevator) {
         for (int i = 0; i < floorsCount; i++) {
             if (elevator.getFloors()[i] == 1) {
                 return i;
@@ -207,7 +150,7 @@ public class ControlSystem {
         return -1;
     }
 
-    int getMaxFloorForElevator(Elevator elevator) {
+    public int getMaxFloorForElevator(Elevator elevator) {
         for (int i = floorsCount - 1; i >= 0; i--) {
             if (elevator.getFloors()[i] == 1) {
                 return i;
@@ -215,5 +158,4 @@ public class ControlSystem {
         }
         return -1;
     }
-
 }

@@ -1,3 +1,5 @@
+package Core;
+
 import Commands.Command;
 import IoC.InitCommand;
 import IoC.IoC;
@@ -5,6 +7,7 @@ import Objects.*;
 
 import java.util.ArrayList;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class Init {
     public static void initialLoad() {
@@ -12,6 +15,9 @@ public class Init {
         int floorsCount = 5;
         int elevatorsCount = 1;
         IoC.<Command>resolve("IoC.Register","floorsCount",(Function<Object[], Object>) ((args) -> floorsCount)).execute();
+        IoC.<Command>resolve("IoC.Register","debugMode",(Function<Object[], Object>) ((args) -> true)).execute();
+        IoC.<Command>resolve("IoC.Register", "debugModeChecker", (Function<Object[], Object>)((args)-> (Supplier<Boolean>)(() -> IoC.<Boolean>resolve("debugMode")))).execute();
+
         IoC.<Command>resolve("IoC.Register","elevatorsCount",(Function<Object[], Object>) ((args) -> elevatorsCount)).execute();
         IoC.<Command>resolve("IoC.Register","elevator",(Function<Object[], Object>) ((args) -> {
             UObject object = new CustomObject();

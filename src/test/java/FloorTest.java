@@ -1,4 +1,5 @@
 import Objects.*;
+import Core.Init;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
