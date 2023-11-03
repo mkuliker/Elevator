@@ -5,13 +5,15 @@ import IoC.IoC;
 import Objects.*;
 
 import java.util.*;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.function.Supplier;
 
 public class ControlSystem {
     public int tick;
     public Elevator[] elevators;
     public Floor[] floors;
-    Deque<Command> queue;
+    BlockingDeque<Command> queue;
     int floorsCount;
     int elevatorsCount;
     Supplier<Boolean> debugMode;
@@ -21,7 +23,7 @@ public class ControlSystem {
         this.elevatorsCount = IoC.resolve("elevatorsCount");
         this.floors = new Floor[this.floorsCount];
         this.elevators = new Elevator[this.elevatorsCount];
-        this.queue = new ArrayDeque<Command>();
+        this.queue = new LinkedBlockingDeque<>();
         for (int i = 0; i < this.floorsCount; i++) {
             this.floors[i] = IoC.resolve("floor");
         }
@@ -41,34 +43,34 @@ public class ControlSystem {
         if (debugMode.get()) {
             printFloors();
         }
+        processQueue();
         processFloors();
         processElevators();
+        tick++;
+    }
 
+    private void processQueue() {
         while (!queue.isEmpty()) {
             Command cmd = queue.remove();
             cmd.execute();
         }
-        tick++;
     }
 
     private void processElevators() {
-        Command cmd;
-        //для каждого приехавшего лифта - обновить состояние
         for (int i = 0; i < this.elevatorsCount; i++) {
-            Elevator elevator = elevators[i];
-            int currentFloor = elevator.getCurrentFloor();
-            if (elevator.getFloors()[currentFloor] == 1) {
+            if (needProcessElevator(i)) {
                 queue.add(new ReleaseGroupsFromElevator(i));
                 queue.add(new AddGroupsFromFloorToElevator(i));
             }
             queue.add(new CalculateAndSetElevatorStatus(i));
-
-        }
-        //для каждого лифта в движении - сделать один мув
-        for (int i = 0; i < this.elevatorsCount; i++) {
             queue.add(new MoveElevator(i));
-
         }
+    }
+
+    private boolean needProcessElevator(int eNum) {
+        Elevator elevator = elevators[eNum];
+        int currentFloor = elevator.getCurrentFloor();
+        return elevator.getFloors()[currentFloor] == 1;
     }
 
     private int findElevatorForFloor(int f) {

@@ -40,6 +40,7 @@ public class Init {
         IoC.<Command>resolve("IoC.Register","getFloor",(Function<Object[], Object>) ((args) -> cs.floors[(int)args[0]])).execute();
         IoC.<Command>resolve("IoC.Register","getCS",(Function<Object[], Object>) ((args) -> cs)).execute();
         IoC.<Command>resolve("IoC.Register","getElevator",(Function<Object[], Object>) ((args) -> cs.elevators[(int)args[0]])).execute();
+        IoC.<Command>resolve("IoC.Register","getQueue",(Function<Object[], Object>) ((args) -> cs.queue)).execute();
 
     }
 }

@@ -7,6 +7,7 @@ import Core.Init;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.Deque;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,25 +23,23 @@ class ControlSystemTest {
     @Test
     public void mainTest(){
         ControlSystem cs = IoC.resolve("getCS");
+        Deque<Command> queue = IoC.resolve("getQueue");
 
-        Command cmd = new AddGroupToFloor(1,3,4);
-        cmd.execute();
+        queue.add(new AddGroupToFloor(1,3,4));
 
         while (cs.tick < 17){
             if (cs.tick == 2){
-                cmd = new AddGroupToFloor(1,0,4);
-                cmd.execute();
+                queue.add(new AddGroupToFloor(1,0,4));
             }
             cs.process();
-            if ((cs.tick >= 1 && cs.tick <= 3)
-            ||(cs.tick >= 10 && cs.tick <= 12)){
+            if ((cs.tick >= 2 && cs.tick <= 4)
+            ||(cs.tick >= 11 && cs.tick <= 13)){
                 assertEquals(ElevatorStatus.UP, cs.elevators[0].getStatus());
             }
-            if (cs.tick == 14){
+            if (cs.tick == 15){
                 assertEquals(ElevatorStatus.OFF, cs.elevators[0].getStatus());
             }
         }
-
     }
     public void whenFloorButtonIsOnElevatorHasFloorInListTest(){
         //changeFloorStatus
