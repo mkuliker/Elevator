@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class ControlSystem {
     public int tick;
@@ -74,12 +75,18 @@ public class ControlSystem {
     }
 
     private int findElevatorForFloor(int f) {
+        Set<FloorButtonStatus> dest = floors[f].getPeopleGroups().stream().map(group -> group.getTargetFloor()> f? FloorButtonStatus.UP : FloorButtonStatus.DOWN).collect(Collectors.toSet());
+        for (int i = 0; i < this.elevatorsCount; i++){
+            if (elevators[i].getStatus() == ElevatorStatus.OFF && elevators[i].getCurrentFloor() == f) {
+                return i;
+            }
+        }
         for (int i = 0; i < this.elevatorsCount; i++) {
             if (elevators[i].getStatus() == ElevatorStatus.OFF) {
                 return i;
-            } else if (elevators[i].getStatus() == ElevatorStatus.UP && elevators[i].getCurrentFloor() < f) {
+            } else if (elevators[i].getStatus() == ElevatorStatus.UP && elevators[i].getCurrentFloor() < f && dest.contains(FloorButtonStatus.UP)) {
                 return i;
-            } else if (elevators[i].getStatus() == ElevatorStatus.DOWN && elevators[i].getCurrentFloor() > f) {
+            } else if (elevators[i].getStatus() == ElevatorStatus.DOWN && elevators[i].getCurrentFloor() > f && dest.contains(FloorButtonStatus.DOWN)) {
                 return i;
             }
         }

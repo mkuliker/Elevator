@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b1d1c526-b0bc-458b-a8ed-9bdaf2773ec9" name="Changes" comment="refactor">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Core/GroupAdder.java" afterDir="false" />
+    <list default="true" id="b1d1c526-b0bc-458b-a8ed-9bdaf2773ec9" name="Changes" comment="groupAdder in thread added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Core/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Core/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Core/ControlSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Core/ControlSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Core/Init.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Core/Init.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AddGroupTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AddGroupTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699017433960</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="groupAdder in thread added">
+      <created>1699302474288</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1699302474288</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -208,7 +211,8 @@
     <MESSAGE value="stable version" />
     <MESSAGE value="commands added" />
     <MESSAGE value="refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+    <MESSAGE value="groupAdder in thread added" />
+    <option name="LAST_COMMIT_MESSAGE" value="groupAdder in thread added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -230,7 +234,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Core/ControlSystem.java</url>
-          <line>42</line>
+          <line>43</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
