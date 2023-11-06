@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,6 +18,9 @@ public class AddGroupTest {
     @BeforeAll
     static void init(){
         new InitCommand().execute();
+        IoC.<Command>resolve("IoC.Register","debugMode",(Function<Object[], Object>) ((args) -> true)).execute();
+        IoC.<Command>resolve("IoC.Register", "debugModeChecker", (Function<Object[], Object>)((args)-> (Supplier<Boolean>)(() -> IoC.<Boolean>resolve("debugMode")))).execute();
+
         IoC.<Command>resolve("IoC.Register","floorsCount",(Function<Object[], Object>) ((args) -> 5)).execute();
         IoC.<Command>resolve("IoC.Register","elevatorsCount",(Function<Object[], Object>) ((args) -> 5)).execute();
         IoC.<Command>resolve("IoC.Register","elevator",(Function<Object[], Object>) ((args) -> {

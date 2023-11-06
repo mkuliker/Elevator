@@ -116,12 +116,12 @@ public class ControlSystem {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < elevatorsCount; i++) {
             if (currentFloor == elevators[i].getCurrentFloor()) {
-                result.append("  ")
+                result.append("| ")
                         .append(elevators[i].getStatus())
                         .append("|")
                         .append(destinationString(elevators[i]));
             } else {
-                result.append("    ");
+                result.append("|    ");
             }
         }
         return result.toString();

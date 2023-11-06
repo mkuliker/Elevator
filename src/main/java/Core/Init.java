@@ -10,10 +10,11 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class Init {
-    public static void initialLoad() {
+    public static void initialLoad(){
+        initialLoad(5,1,10);
+    }
+    public static void initialLoad(int floorsCount, int elevatorsCount, int capacity) {
         new InitCommand().execute();
-        int floorsCount = 5;
-        int elevatorsCount = 1;
         IoC.<Command>resolve("IoC.Register","floorsCount",(Function<Object[], Object>) ((args) -> floorsCount)).execute();
         IoC.<Command>resolve("IoC.Register","debugMode",(Function<Object[], Object>) ((args) -> true)).execute();
         IoC.<Command>resolve("IoC.Register", "debugModeChecker", (Function<Object[], Object>)((args)-> (Supplier<Boolean>)(() -> IoC.<Boolean>resolve("debugMode")))).execute();
@@ -21,7 +22,7 @@ public class Init {
         IoC.<Command>resolve("IoC.Register","elevatorsCount",(Function<Object[], Object>) ((args) -> elevatorsCount)).execute();
         IoC.<Command>resolve("IoC.Register","elevator",(Function<Object[], Object>) ((args) -> {
             UObject object = new CustomObject();
-            object.setProperty("capacity",5);
+            object.setProperty("capacity",capacity);
             object.setProperty("status", ElevatorStatus.OFF);
             object.setProperty("currentOccupancy",0);
             object.setProperty("currentFloor",0);

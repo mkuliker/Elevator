@@ -1,25 +1,27 @@
 package Core;
 
-import Commands.AddGroupToFloor;
 import Commands.Command;
 import IoC.IoC;
+
+import java.util.concurrent.BlockingDeque;
 
 public class App {
     static ControlSystem cs;
     public static void main(String[] args) {
-        Init.initialLoad();
+        Init.initialLoad(10,3,100);
         cs = IoC.resolve("getCS");
+        BlockingDeque<Command> queue = IoC.resolve("getQueue");
 
-        Command cmd = new AddGroupToFloor(1,3,4);
-        cmd.execute();
+        Thread thread = new Thread(new GroupAdder(queue));
+        thread.start();
 
-        while (cs.tick < 17){
-            if (cs.tick == 2){
-                cmd = new AddGroupToFloor(1,0,4);
-                cmd.execute();
-            }
+        while (cs.tick < 100){
             cs.process();
         }
-
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
